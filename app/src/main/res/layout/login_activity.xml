@@ -23,7 +23,7 @@
         android:maxLines="1">
     </EditText>
     <Button
-        android:id="@+id/Enter"
+        android:id="@+id/enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -33,12 +33,13 @@
         android:text="Enter"
         />
     <Button
-        android:id="@+id/NewUser"
+        android:id="@+id/createAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_margin="4dp"
         android:layout_centerHorizontal="true"
+        android:onClick="createAccount"
         android:text="Create Account"
         />
 </LinearLayout>

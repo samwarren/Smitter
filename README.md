@@ -9,7 +9,12 @@ Thursday 2/18
  - basic login
 
  Friday 2/19
--
+- research in testing
+
+Monday
+-implementing creating new user account
+-still need to improve UI for new user account, find place to display invalid email addr and account
+creation error
 
 
 Questions for trov

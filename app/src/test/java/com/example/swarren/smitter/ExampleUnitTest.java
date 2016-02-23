@@ -1,15 +1,25 @@
 package com.example.swarren.smitter;
 
-import org.junit.Test;
+import android.test.AndroidTestCase;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
-public class ExampleUnitTest {
+public class ExampleUnitTest extends AndroidTestCase {
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+    }
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void tweetListCorrectFBUrl() throws Exception {
+        assertEquals(TweetList.class.getResource("FIREBASE_URL"),
+                "https://brilliant-heat-7188.firebaseio.com");
     }
 }
