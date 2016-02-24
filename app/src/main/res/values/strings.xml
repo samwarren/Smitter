@@ -5,6 +5,6 @@
     <string name="login_handler">LoginHandler</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
-
+    <string name="tweet_hint">Tweet yo self</string>
     <string name="tweets_title">Tweets</string>
 </resources>
