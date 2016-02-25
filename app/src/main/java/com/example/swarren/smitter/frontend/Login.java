@@ -1,4 +1,4 @@
-package com.example.swarren.smitter;
+package com.example.swarren.smitter.frontend;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 
+import com.example.swarren.smitter.R;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -39,7 +40,6 @@ public class Login extends Activity {
         //remember to add if the login is expired
         if(loggedIn){
             goToTweetList();
-            System.out.println(firebase.getAuth().getUid());
         }
 
     }
@@ -47,6 +47,7 @@ public class Login extends Activity {
     private void goToTweetList() {
         Intent intent = new Intent(Login.this, TweetList.class);
         intent.putExtra("FIREBASE_URL", FIREBASE_URL);
+        intent.putExtra("userEmail", firebase.getAuth().getProviderData().get("email").toString());
         startActivity(intent);
     }
 
@@ -57,7 +58,6 @@ public class Login extends Activity {
 
 
     public void createAccount(View view){
-
         LayoutInflater layoutInflater
                 = (LayoutInflater)getBaseContext()
                 .getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -104,8 +104,6 @@ public class Login extends Activity {
     }
 
     private Boolean validEmail(String email) {
-        System.out.println("testing if email is valid");
-        System.out.println(email);
         if(email==null){
             return false;
         }

@@ -38,7 +38,7 @@
         >
 
         <EditText
-            android:id="@+id/message_et"
+            android:id="@+id/tweetInput"
             android:hint="@string/tweet_hint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -49,13 +49,14 @@
             android:layout_weight="4"/>
 
         <Button
+            android:id="@+id/sendButton"
             android:text="send"
             android:background="@color/pn_blue"
             android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="sendMessage"/>
+            android:onClick="sendTweet"/>
 
 
     </LinearLayout>

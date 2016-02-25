@@ -2,6 +2,8 @@ package com.example.swarren.smitter;
 
 import android.test.AndroidTestCase;
 
+import com.example.swarren.smitter.frontend.TweetList;
+
 import org.junit.Test;
 
 /**
