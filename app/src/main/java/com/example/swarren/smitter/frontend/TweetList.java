@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.swarren.smitter.R;
-import com.example.swarren.smitter.Tweet;
-import com.example.swarren.smitter.TweetListAdapter;
+import com.example.swarren.smitter.backend.Tweet;
+import com.example.swarren.smitter.backend.TweetListAdapter;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -138,7 +138,7 @@ public class TweetList extends ListActivity {
     }
 
     public void logout(View view) {
-        Intent intent = new Intent(TweetList.this, Login.class);
+        Intent intent = new Intent(TweetList.this, Login_Activity.class);
         startActivity(intent);
         firebase.unauth();
     }

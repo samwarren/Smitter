@@ -1,4 +1,4 @@
-package com.example.swarren.smitter;
+package com.example.swarren.smitter.backend;
 
 /**
  * Created by swarren on 2/24/16.

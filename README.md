@@ -22,6 +22,17 @@ implementing list view for tweets
 Wednesday 2/24
 git restructuring to include java files
 
+Thursday
+Meeting with android group
+
+Friday: research into threading, please see the note below
+
+IMPORTANT NOTE ON THREADING: firebase by default creats a separate thread for all of its operations,
+therefore it is not necessary (I think) for me to create a separate thread for it.
+For further reading: https://www.firebase.com/docs/java-api/javadoc/index.html?com/firebase/client/Config.html
+and although this is a sketchy website, it has useful information
+http://newtips.co/st/questions/31922085/how-to-save-retrieved-data-to-variable-outside-the-ondatachange-method-in-fireba.html
+
 
 Testing to do: test that upon creating username u and password p it is saved in firebase, you can login as u with p, that u can post a tweet as u and have it connected
 test multiple active users

@@ -1,10 +1,11 @@
-package com.example.swarren.smitter;
+package com.example.swarren.smitter.backend;
 
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.swarren.smitter.R;
 import com.firebase.client.Query;
 
 /**

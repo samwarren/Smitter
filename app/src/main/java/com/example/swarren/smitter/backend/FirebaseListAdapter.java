@@ -1,4 +1,4 @@
-package com.example.swarren.smitter;
+package com.example.swarren.smitter.backend;
 
 import android.app.Activity;
 import android.util.Log;

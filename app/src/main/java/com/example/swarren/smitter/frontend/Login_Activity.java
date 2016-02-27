@@ -18,9 +18,9 @@ import com.firebase.client.FirebaseError;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Login extends Activity {
+public class Login_Activity extends Activity {
     private final String FIREBASE_URL = "https://brilliant-heat-7188.firebaseio.com";
-    private final String INVALID_EMAIL = "invalid email please try again ";
+    private final String INVALID_EMAIL = "invalid email";
     private final String ACCOUNT_CREATION_ERROR = "Error creating account";
     EditText emailAddr;
     EditText password;
@@ -44,16 +44,30 @@ public class Login extends Activity {
 
     }
 
+    public Boolean loggedIn(){
+
+        return firebase.getAuth()!=null;
+    }
     private void goToTweetList() {
-        Intent intent = new Intent(Login.this, TweetList.class);
+        Intent intent = new Intent(Login_Activity.this, TweetList.class);
         intent.putExtra("FIREBASE_URL", FIREBASE_URL);
         intent.putExtra("userEmail", firebase.getAuth().getProviderData().get("email").toString());
         startActivity(intent);
     }
 
+    /*
+    method called when user presses login button;
+     */
     public void authenticateUser(View view) {
-        firebase.authWithPassword(emailAddr.getText().toString(),
-                password.getText().toString(), new MyAuthResultHandler(firebase));
+        String email = emailAddr.getText().toString();
+        String pass = password.getText().toString();
+        if(validEmail(email)) {
+            firebase.authWithPassword(email,pass, new MyAuthResultHandler(firebase));
+        }else{
+            emailAddr.setText("");
+            emailAddr.setHint(INVALID_EMAIL);
+        }
+
     }
 
 
@@ -90,6 +104,7 @@ public class Login extends Activity {
     }
 
     private void authorizeNewAccount(String email, String password){
+
             firebase.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
                 @Override
                 public void onSuccess(Map<String, Object> result) {
@@ -110,13 +125,17 @@ public class Login extends Activity {
         return email.contains("@") && email.contains(".");
     }
 
-
     class MyAuthResultHandler implements Firebase.AuthResultHandler {
         Firebase firebase;
             public MyAuthResultHandler(Firebase fb) {
                 firebase = fb;
+
             }
 
+            /*
+            callback function for after login authentication over
+            if login successful
+             */
             public void onAuthenticated(AuthData authData){
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("provider", authData.getProvider());
@@ -127,9 +146,13 @@ public class Login extends Activity {
                 goToTweetList();
             }
 
+            /*
+            callback function for after login authentication over
+            if login unsuccessful
+            */
             public void onAuthenticationError(FirebaseError error){
-                System.out.println("ERROR +" + error);
-                emailAddr.setText(R.string.invalid_login);
+                emailAddr.setText("");
+                emailAddr.setHint(R.string.invalid_login);
             }
     }
 }
