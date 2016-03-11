@@ -19,9 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login_Activity extends Activity {
-    private final String FIREBASE_URL = "https://brilliant-heat-7188.firebaseio.com";
-    private final String INVALID_EMAIL = "invalid email";
-    private final String ACCOUNT_CREATION_ERROR = "Error creating account";
+    private static final String FIREBASE_URL = "https://brilliant-heat-7188.firebaseio.com";
+    private static final String INVALID_EMAIL = "invalid email";
+    private static final String ACCOUNT_CREATION_ERROR = "Error creating account";
+    private static final int FIVE_MB = 5000000;
+    private static final int MAX_BYTES_ALLOCATED_FOR_CACHE = FIVE_MB;
     EditText emailAddr;
     EditText password;
     PopupWindow createUserPopUp;
@@ -29,9 +31,7 @@ public class Login_Activity extends Activity {
     Firebase firebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //store tweet data with user's device
-        Firebase.getDefaultConfig().setPersistenceEnabled(true);
-        Firebase.setAndroidContext(this);
+        firebaseInitialization();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         firebase = new Firebase(FIREBASE_URL);
@@ -43,8 +43,13 @@ public class Login_Activity extends Activity {
         if(loggedIn){
             goToTweetList();
         }
+    }
 
-
+    public void firebaseInitialization(){
+        //store tweet data with user's device
+        Firebase.getDefaultConfig().setPersistenceEnabled(true);
+        Firebase.getDefaultConfig().setPersistenceCacheSizeBytes(MAX_BYTES_ALLOCATED_FOR_CACHE);
+        Firebase.setAndroidContext(this);
     }
 
     public Boolean loggedIn(){

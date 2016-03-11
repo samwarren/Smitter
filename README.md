@@ -18,7 +18,7 @@ Instead, I used the firebase library to create a cache of the tweets on the user
 Smitter on the emulator without wifi and it loads old tweets. There are two issues with this approach however:
 First, the assignment asked for old tweets to be loaded onto the phone and then for only new tweets to be queried
 currently my approach loads old tweets and then fetches remaining tweets. The advantage to my approach is that
-a user would have access to all the tweets and the firebase cache is capped at 10MB so if too many people
+a user would have access to all the tweets and I have set the cache's size to be capped at 5MB so if too many people
 are tweeting, it isn't possible for tweet storage to swamp the user's device. The second issue, is that I have
 not been able to verify that I am first loading the stored tweets and then querying the database, it is possible
 that the cache is  only being utilized when the device is offline.

@@ -12,6 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email_hint"
+        android:maxLength="@integer/max_email_length"
         android:inputType="textEmailAddress" />
     <EditText
         android:layout_height="wrap_content"
@@ -20,6 +21,7 @@
         android:inputType="textPassword"
         android:id="@+id/password"
         android:hint="@string/password_hint"
+        android:maxLength="@integer/max_password_length"
         android:maxLines="1">
     </EditText>
     <Button

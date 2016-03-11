@@ -29,7 +29,7 @@ import java.io.FileOutputStream;
 public class TweetList_Activity extends ListActivity {
     private String FIREBASE_URL;
     private static final int TWEETS_PER_LIST = 50;
-
+    private final int MAX_CHAR_IN_TWEET=50;
     private Firebase firebase;
     private Firebase tFirebase;
     private String userEmail;
@@ -141,6 +141,7 @@ public class TweetList_Activity extends ListActivity {
         EditText inputText = (EditText) findViewById(R.id.tweetInput);
         String input = inputText.getText().toString();
         if (!input.equals("")) {
+            input = ensureTweetNotTooLarge(input);
             // Create our 'model', a Tweet object
             Tweet newTweet = new Tweet(userEmail, input);
             // Create a new, auto-generated child of that tweet location, and save our tweet data there
@@ -150,6 +151,14 @@ public class TweetList_Activity extends ListActivity {
 
             inputText.setText("");
         }
+    }
+
+    private String ensureTweetNotTooLarge(String input){
+     if(input.length()>MAX_CHAR_IN_TWEET){
+         return input.substring(0, MAX_CHAR_IN_TWEET);
+     } else {
+         return input;
+     }
     }
 
     public void logout(View view) {
