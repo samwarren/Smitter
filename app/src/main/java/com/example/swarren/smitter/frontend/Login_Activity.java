@@ -121,7 +121,7 @@ public class Login_Activity extends Activity {
             });
     }
 
-    private Boolean validEmail(String email) {
+    public Boolean validEmail(String email) {
         if(email==null){
             return false;
         }
