@@ -17,7 +17,5 @@ public class TweetList_ActivityTest extends AndroidTestCase {
     private final String FIREBASE_URL = "https://brilliant-heat-7188.firebaseio.com";
     Firebase testFirebase;
 
-    public void testSomething() throws Throwable {
-        assertEquals("hi", "hi");
-    }
+
 }

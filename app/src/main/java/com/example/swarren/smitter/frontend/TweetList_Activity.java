@@ -140,26 +140,17 @@ public class TweetList_Activity extends ListActivity {
 
         EditText inputText = (EditText) findViewById(R.id.tweetInput);
         String input = inputText.getText().toString();
+
+
         if (!input.equals("")) {
-            input = ensureTweetNotTooLarge(input);
             // Create our 'model', a Tweet object
             Tweet newTweet = new Tweet(userEmail, input);
             // Create a new, auto-generated child of that tweet location, and save our tweet data there
             tFirebase.push().setValue(newTweet);
-
-
-
             inputText.setText("");
         }
     }
 
-    private String ensureTweetNotTooLarge(String input){
-     if(input.length()>MAX_CHAR_IN_TWEET){
-         return input.substring(0, MAX_CHAR_IN_TWEET);
-     } else {
-         return input;
-     }
-    }
 
     public void logout(View view) {
         Intent intent = new Intent(TweetList_Activity.this, Login_Activity.class);
