@@ -154,6 +154,7 @@ public class TweetList_Activity extends ListActivity {
 
     public void logout(View view) {
         Intent intent = new Intent(TweetList_Activity.this, Login_Activity.class);
+        intent.putExtra("FIREBASE_ALREADY_SETUP", true);
         startActivity(intent);
         firebase.unauth();
     }

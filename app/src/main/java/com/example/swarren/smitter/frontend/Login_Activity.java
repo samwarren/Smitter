@@ -27,11 +27,10 @@ public class Login_Activity extends Activity {
     EditText emailAddr;
     EditText password;
     PopupWindow createUserPopUp;
-
     Firebase firebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        firebaseInitialization();
+        firebaseInitialization(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         firebase = new Firebase(FIREBASE_URL);
@@ -45,15 +44,28 @@ public class Login_Activity extends Activity {
         }
     }
 
-    public void firebaseInitialization(){
-        //store tweet data with user's device
-        Firebase.getDefaultConfig().setPersistenceEnabled(true);
-        Firebase.getDefaultConfig().setPersistenceCacheSizeBytes(MAX_BYTES_ALLOCATED_FOR_CACHE);
-        Firebase.setAndroidContext(this);
+    private boolean firebaseAlreadyInitialized(Bundle bundle){
+        if (bundle == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                return false;
+            } else {
+                return extras.getBoolean("FIREBASE_ALREADY_SETUP");            }
+        } else {
+            return (boolean) bundle.getSerializable("FIREBASE_ALREADY_SETUP");
+        }
+    }
+    private void firebaseInitialization(Bundle bundle){
+        boolean initialized=firebaseAlreadyInitialized(bundle);
+        if(!initialized) {
+            //store tweet data with user's device
+            Firebase.getDefaultConfig().setPersistenceEnabled(true);
+            Firebase.getDefaultConfig().setPersistenceCacheSizeBytes(MAX_BYTES_ALLOCATED_FOR_CACHE);
+            Firebase.setAndroidContext(this);
+        }
     }
 
     public Boolean loggedIn(){
-
         return firebase.getAuth()!=null;
     }
     private void goToTweetList() {
