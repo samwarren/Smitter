@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".frontend.TweetList"
+            android:name=".frontend.TweetList_Activity"
             android:label="TWEETS"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>

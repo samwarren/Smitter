@@ -2,7 +2,7 @@ package com.example.swarren.smitter;
 
 import android.test.AndroidTestCase;
 
-import com.example.swarren.smitter.frontend.TweetList;
+import com.example.swarren.smitter.frontend.TweetList_Activity;
 
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class ExampleUnitTest extends AndroidTestCase {
     }
     @Test
     public void tweetListCorrectFBUrl() throws Exception {
-        assertEquals(TweetList.class.getResource("FIREBASE_URL"),
+        assertEquals(TweetList_Activity.class.getResource("FIREBASE_URL"),
                 "https://brilliant-heat-7188.firebaseio.com");
     }
 }

@@ -1,12 +1,17 @@
-package com.example.swarren.smitter.backend;
+package com.example.swarren.smitter.tasks;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.swarren.smitter.R;
+import com.example.swarren.smitter.models.Tweet;
 import com.firebase.client.Query;
+
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 /**
  * Created by swarren on 2/24/16.
@@ -14,10 +19,14 @@ import com.firebase.client.Query;
 public class TweetListAdapter extends FirebaseListAdapter<Tweet> {
     // The mUsername for this client. We use this to indicate which messages originated from this user
     private String mUsername;
-
+    private Context con;
+    private Activity activity;
+    public final String LOCALLY_STORED_TWEET_LIST= "LocallyStoredTweetList";
     public TweetListAdapter(Query ref, Activity activity, int layout, String mUsername) {
         super(ref, Tweet.class, layout, activity);
         this.mUsername = mUsername;
+        System.out.println("XXXX i need to ifnish this app");
+        this.activity =activity;
     }
 
     /**
@@ -30,6 +39,7 @@ public class TweetListAdapter extends FirebaseListAdapter<Tweet> {
      */
     @Override
     protected void populateView(View view, Tweet tweet) {
+
         // Map a Tweet object to an entry in our listview
         String username = tweet.getUsername();
         TextView authorText = (TextView) view.findViewById(R.id.username);
@@ -41,6 +51,7 @@ public class TweetListAdapter extends FirebaseListAdapter<Tweet> {
             authorText.setTextColor(Color.BLUE);
         }
         ((TextView) view.findViewById(R.id.tweetContent)).setText(tweet.getInput());
+
     }
 
 

@@ -13,7 +13,7 @@
 //
 //    @Test
 //    public void testTweetListOnCreate() throws Exception {
-//    TweetList task = new TweetList();
+//    TweetList_Activity task = new TweetList_Activity();
 //        View v = new View();
 //    task.logout(v);
 //    }

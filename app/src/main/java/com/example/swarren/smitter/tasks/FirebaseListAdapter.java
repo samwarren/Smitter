@@ -1,4 +1,4 @@
-package com.example.swarren.smitter.backend;
+package com.example.swarren.smitter.tasks;
 
 import android.app.Activity;
 import android.util.Log;
@@ -14,7 +14,6 @@ import com.firebase.client.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * @author greg
@@ -37,7 +36,6 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
     private List<T> mModels;
     private List<String> mKeys;
     private ChildEventListener mListener;
-
 
 
     /**
@@ -64,6 +62,7 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
 
                 // Insert into the correct location, based on previousChildName
                 if (previousChildName == null) {
+                    System.out.println("add child prev child null");
                     mModels.add(0, model);
                     mKeys.add(0, key);
                 } else {
@@ -78,7 +77,10 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
                     }
                 }
 
+
                 notifyDataSetChanged();
+
+
             }
 
             @Override

@@ -29,18 +29,21 @@ public class Login_Activity extends Activity {
     Firebase firebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //store tweet data with user's device
+        Firebase.getDefaultConfig().setPersistenceEnabled(true);
         Firebase.setAndroidContext(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         firebase = new Firebase(FIREBASE_URL);
+        firebase.keepSynced(true);
         emailAddr = (EditText) findViewById(R.id.email_address);
         password = (EditText) findViewById(R.id.password);
         boolean loggedIn;
         loggedIn = firebase.getAuth()!=null;
-        //remember to add if the login is expired
         if(loggedIn){
             goToTweetList();
         }
+
 
     }
 
@@ -49,7 +52,7 @@ public class Login_Activity extends Activity {
         return firebase.getAuth()!=null;
     }
     private void goToTweetList() {
-        Intent intent = new Intent(Login_Activity.this, TweetList.class);
+        Intent intent = new Intent(Login_Activity.this, TweetList_Activity.class);
         intent.putExtra("FIREBASE_URL", FIREBASE_URL);
         intent.putExtra("userEmail", firebase.getAuth().getProviderData().get("email").toString());
         startActivity(intent);
